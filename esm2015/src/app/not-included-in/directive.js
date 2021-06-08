@@ -1,0 +1,39 @@
+import { Directive, Input, forwardRef } from '@angular/core';
+import { NG_VALIDATORS } from '@angular/forms';
+import { notIncludedIn } from './validator';
+const NOT_INCLUDED_IN_VALIDATOR = {
+    provide: NG_VALIDATORS,
+    useExisting: forwardRef(() => NotIncludedInValidator),
+    multi: true
+};
+export class NotIncludedInValidator {
+    ngOnInit() {
+        this.validator = notIncludedIn(this.notIncludedIn);
+    }
+    ngOnChanges(changes) {
+        for (const key in changes) {
+            if (key === 'notIncludedIn') {
+                this.validator = notIncludedIn(changes[key].currentValue);
+                if (this.onChange) {
+                    this.onChange();
+                }
+            }
+        }
+    }
+    validate(c) {
+        return this.validator(c);
+    }
+    registerOnValidatorChange(fn) {
+        this.onChange = fn;
+    }
+}
+NotIncludedInValidator.decorators = [
+    { type: Directive, args: [{
+                selector: '[notIncludedIn][formControlName],[notIncludedIn][formControl],[notIncludedIn][ngModel]',
+                providers: [NOT_INCLUDED_IN_VALIDATOR]
+            },] }
+];
+NotIncludedInValidator.propDecorators = {
+    notIncludedIn: [{ type: Input }]
+};
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZGlyZWN0aXZlLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiLi4vLi4vLi4vLi4vLi4vc3JjL2FwcC9ub3QtaW5jbHVkZWQtaW4vZGlyZWN0aXZlLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBLE9BQU8sRUFBRSxTQUFTLEVBQUUsS0FBSyxFQUFFLFVBQVUsRUFBb0MsTUFBTSxlQUFlLENBQUM7QUFDL0YsT0FBTyxFQUFFLGFBQWEsRUFBMkMsTUFBTSxnQkFBZ0IsQ0FBQztBQUV4RixPQUFPLEVBQUUsYUFBYSxFQUFFLE1BQU0sYUFBYSxDQUFDO0FBRTVDLE1BQU0seUJBQXlCLEdBQVE7SUFDckMsT0FBTyxFQUFFLGFBQWE7SUFDdEIsV0FBVyxFQUFFLFVBQVUsQ0FBQyxHQUFHLEVBQUUsQ0FBQyxzQkFBc0IsQ0FBQztJQUNyRCxLQUFLLEVBQUUsSUFBSTtDQUNaLENBQUM7QUFNRixNQUFNLE9BQU8sc0JBQXNCO0lBTWpDLFFBQVE7UUFDTixJQUFJLENBQUMsU0FBUyxHQUFHLGFBQWEsQ0FBQyxJQUFJLENBQUMsYUFBYSxDQUFDLENBQUM7SUFDckQsQ0FBQztJQUVELFdBQVcsQ0FBQyxPQUFzQjtRQUNoQyxLQUFLLE1BQU0sR0FBRyxJQUFJLE9BQU8sRUFBRTtZQUN6QixJQUFJLEdBQUcsS0FBSyxlQUFlLEVBQUU7Z0JBQzNCLElBQUksQ0FBQyxTQUFTLEdBQUcsYUFBYSxDQUFDLE9BQU8sQ0FBQyxHQUFHLENBQUMsQ0FBQyxZQUFZLENBQUMsQ0FBQztnQkFDMUQsSUFBSSxJQUFJLENBQUMsUUFBUSxFQUFFO29CQUNqQixJQUFJLENBQUMsUUFBUSxFQUFFLENBQUM7aUJBQ2pCO2FBQ0Y7U0FDRjtJQUNILENBQUM7SUFFRCxRQUFRLENBQUMsQ0FBa0I7UUFDekIsT0FBTyxJQUFJLENBQUMsU0FBUyxDQUFDLENBQUMsQ0FBQyxDQUFDO0lBQzNCLENBQUM7SUFFRCx5QkFBeUIsQ0FBQyxFQUFjO1FBQ3RDLElBQUksQ0FBQyxRQUFRLEdBQUcsRUFBRSxDQUFDO0lBQ3JCLENBQUM7OztZQS9CRixTQUFTLFNBQUM7Z0JBQ1QsUUFBUSxFQUFFLHdGQUF3RjtnQkFDbEcsU0FBUyxFQUFFLENBQUMseUJBQXlCLENBQUM7YUFDdkM7Ozs0QkFFRSxLQUFLIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgRGlyZWN0aXZlLCBJbnB1dCwgZm9yd2FyZFJlZiwgT25Jbml0LCBPbkNoYW5nZXMsIFNpbXBsZUNoYW5nZXMgfSBmcm9tICdAYW5ndWxhci9jb3JlJztcclxuaW1wb3J0IHsgTkdfVkFMSURBVE9SUywgVmFsaWRhdG9yLCBWYWxpZGF0b3JGbiwgQWJzdHJhY3RDb250cm9sIH0gZnJvbSAnQGFuZ3VsYXIvZm9ybXMnO1xyXG5cclxuaW1wb3J0IHsgbm90SW5jbHVkZWRJbiB9IGZyb20gJy4vdmFsaWRhdG9yJztcclxuXHJcbmNvbnN0IE5PVF9JTkNMVURFRF9JTl9WQUxJREFUT1I6IGFueSA9IHtcclxuICBwcm92aWRlOiBOR19WQUxJREFUT1JTLFxyXG4gIHVzZUV4aXN0aW5nOiBmb3J3YXJkUmVmKCgpID0+IE5vdEluY2x1ZGVkSW5WYWxpZGF0b3IpLFxyXG4gIG11bHRpOiB0cnVlXHJcbn07XHJcblxyXG5ARGlyZWN0aXZlKHtcclxuICBzZWxlY3RvcjogJ1tub3RJbmNsdWRlZEluXVtmb3JtQ29udHJvbE5hbWVdLFtub3RJbmNsdWRlZEluXVtmb3JtQ29udHJvbF0sW25vdEluY2x1ZGVkSW5dW25nTW9kZWxdJyxcclxuICBwcm92aWRlcnM6IFtOT1RfSU5DTFVERURfSU5fVkFMSURBVE9SXVxyXG59KVxyXG5leHBvcnQgY2xhc3MgTm90SW5jbHVkZWRJblZhbGlkYXRvciBpbXBsZW1lbnRzIFZhbGlkYXRvciwgT25Jbml0LCBPbkNoYW5nZXMge1xyXG4gIEBJbnB1dCgpIG5vdEluY2x1ZGVkSW46IEFycmF5PGFueT47XHJcblxyXG4gIHByaXZhdGUgdmFsaWRhdG9yOiBWYWxpZGF0b3JGbjtcclxuICBwcml2YXRlIG9uQ2hhbmdlOiAoKSA9PiB2b2lkO1xyXG5cclxuICBuZ09uSW5pdCgpIHtcclxuICAgIHRoaXMudmFsaWRhdG9yID0gbm90SW5jbHVkZWRJbih0aGlzLm5vdEluY2x1ZGVkSW4pO1xyXG4gIH1cclxuXHJcbiAgbmdPbkNoYW5nZXMoY2hhbmdlczogU2ltcGxlQ2hhbmdlcykge1xyXG4gICAgZm9yIChjb25zdCBrZXkgaW4gY2hhbmdlcykge1xyXG4gICAgICBpZiAoa2V5ID09PSAnbm90SW5jbHVkZWRJbicpIHtcclxuICAgICAgICB0aGlzLnZhbGlkYXRvciA9IG5vdEluY2x1ZGVkSW4oY2hhbmdlc1trZXldLmN1cnJlbnRWYWx1ZSk7XHJcbiAgICAgICAgaWYgKHRoaXMub25DaGFuZ2UpIHtcclxuICAgICAgICAgIHRoaXMub25DaGFuZ2UoKTtcclxuICAgICAgICB9XHJcbiAgICAgIH1cclxuICAgIH1cclxuICB9XHJcblxyXG4gIHZhbGlkYXRlKGM6IEFic3RyYWN0Q29udHJvbCk6IHtba2V5OiBzdHJpbmddOiBhbnl9IHtcclxuICAgIHJldHVybiB0aGlzLnZhbGlkYXRvcihjKTtcclxuICB9XHJcblxyXG4gIHJlZ2lzdGVyT25WYWxpZGF0b3JDaGFuZ2UoZm46ICgpID0+IHZvaWQpOiB2b2lkIHtcclxuICAgIHRoaXMub25DaGFuZ2UgPSBmbjtcclxuICB9XHJcbn1cclxuIl19
