@@ -1,0 +1,16 @@
+import { OnInit, OnChanges, SimpleChanges } from '@angular/core';
+import { Validator, AbstractControl } from '@angular/forms';
+import * as i0 from "@angular/core";
+export declare class UUIDValidator implements Validator, OnInit, OnChanges {
+    uuid: any;
+    private validator;
+    private onChange;
+    ngOnInit(): void;
+    ngOnChanges(changes: SimpleChanges): void;
+    validate(c: AbstractControl): {
+        [key: string]: any;
+    };
+    registerOnValidatorChange(fn: () => void): void;
+    static ɵfac: i0.ɵɵFactoryDeclaration<UUIDValidator, never>;
+    static ɵdir: i0.ɵɵDirectiveDeclaration<UUIDValidator, "[uuid][formControlName],[uuid][formControl],[uuid][ngModel]", never, { "uuid": "uuid"; }, {}, never>;
+}

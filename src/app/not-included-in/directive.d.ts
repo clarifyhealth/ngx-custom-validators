@@ -1,0 +1,16 @@
+import { OnInit, OnChanges, SimpleChanges } from '@angular/core';
+import { Validator, AbstractControl } from '@angular/forms';
+import * as i0 from "@angular/core";
+export declare class NotIncludedInValidator implements Validator, OnInit, OnChanges {
+    notIncludedIn: Array<any>;
+    private validator;
+    private onChange;
+    ngOnInit(): void;
+    ngOnChanges(changes: SimpleChanges): void;
+    validate(c: AbstractControl): {
+        [key: string]: any;
+    };
+    registerOnValidatorChange(fn: () => void): void;
+    static ɵfac: i0.ɵɵFactoryDeclaration<NotIncludedInValidator, never>;
+    static ɵdir: i0.ɵɵDirectiveDeclaration<NotIncludedInValidator, "[notIncludedIn][formControlName],[notIncludedIn][formControl],[notIncludedIn][ngModel]", never, { "notIncludedIn": "notIncludedIn"; }, {}, never>;
+}

@@ -1,0 +1,9 @@
+import { Validator, AbstractControl } from '@angular/forms';
+import * as i0 from "@angular/core";
+export declare class DateISOValidator implements Validator {
+    validate(c: AbstractControl): {
+        [key: string]: any;
+    };
+    static ɵfac: i0.ɵɵFactoryDeclaration<DateISOValidator, never>;
+    static ɵdir: i0.ɵɵDirectiveDeclaration<DateISOValidator, "[dateISO][formControlName],[dateISO][formControl],[dateISO][ngModel]", never, {}, {}, never>;
+}

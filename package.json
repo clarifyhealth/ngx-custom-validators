@@ -1,15 +1,9 @@
 {
   "name": "ngx-custom-validators",
-  "version": "12.0.0",
+  "version": "13.0.0",
   "description": "Angular custom directives for validation",
-  "scripts": {
-    "ng": "ng",
-    "start": "ng serve",
-    "build": "ng-packagr -p package.json",
-    "test": "ng test",
-    "lint": "ng lint",
-    "e2e": "ng e2e",
-    "publish": "npm publish ./dist"
+  "engines": {
+    "node": "^12.20.0 || ^14.15.0 || ^16.10.0"
   },
   "repository": {
     "type": "git",
@@ -32,55 +26,40 @@
   "bugs": {
     "url": "https://github.com/rsaenen/ngx-custom-validators/issues"
   },
-  "ngPackage": {
-    "lib": {
-      "entryFile": "public_api.ts"
-    },
-    "whitelistedNonPeerDependencies": [
-      "@angular/*",
-      "bootstrap",
-      "moment",
-      "rxjs",
-      "tslib",
-      "zone.js"
-    ]
-  },
   "homepage": "https://github.com/rsaenen/ngx-custom-validators#readme",
   "private": false,
-  "peerDependencies": {},
-  "dependencies": {
-    "@angular/common": "~12.0.3",
-    "@angular/compiler": "~12.0.3",
-    "@angular/core": "~12.0.3",
-    "@angular/forms": "~12.0.3",
-    "@angular/platform-browser": "~12.0.3",
-    "@angular/platform-browser-dynamic": "~12.0.3",
-    "moment": "^2.28.0",
-    "rxjs": "~6.6.3",
-    "tslib": "^2.2.0",
-    "zone.js": "~0.11.4"
+  "peerDependencies": {
+    "@angular/common": "13.3.11",
+    "@angular/compiler": "13.3.11",
+    "@angular/core": "13.3.11",
+    "@angular/forms": "13.3.11",
+    "@angular/platform-browser": "13.3.11",
+    "@angular/platform-browser-dynamic": "13.3.11",
+    "moment": "^2.29.4",
+    "rxjs": "~7.5.6",
+    "zone.js": "~0.11.8"
   },
-  "devDependencies": {
-    "@angular-devkit/build-angular": "~12.0.3",
-    "@angular-devkit/schematics": "~12.0.3",
-    "@angular/cli": "~12.0.3",
-    "@angular/compiler-cli": "~12.0.3",
-    "@angular/language-service": "~12.0.3",
-    "@types/jasmine": "~3.6.0",
-    "@types/jasminewd2": "~2.0.3",
-    "@types/node": "^14.11.1",
-    "codelyzer": "^6.0.0",
-    "jasmine-core": "~3.6.0",
-    "jasmine-spec-reporter": "~5.0.0",
-    "karma": "~6.3.3",
-    "karma-chrome-launcher": "~3.1.0",
-    "karma-coverage-istanbul-reporter": "~3.0.2",
-    "karma-jasmine": "~4.0.0",
-    "karma-jasmine-html-reporter": "^1.5.0",
-    "ng-packagr": "^12.0.3",
-    "protractor": "~7.0.0",
-    "ts-node": "~9.0.0",
-    "tslint": "~6.1.0",
-    "typescript": "~4.2.4"
-  }
+  "dependencies": {
+    "tslib": "^2.4.0"
+  },
+  "module": "fesm2015/ngx-custom-validators.mjs",
+  "es2020": "fesm2020/ngx-custom-validators.mjs",
+  "esm2020": "esm2020/ngx-custom-validators.mjs",
+  "fesm2020": "fesm2020/ngx-custom-validators.mjs",
+  "fesm2015": "fesm2015/ngx-custom-validators.mjs",
+  "typings": "ngx-custom-validators.d.ts",
+  "exports": {
+    "./package.json": {
+      "default": "./package.json"
+    },
+    ".": {
+      "types": "./ngx-custom-validators.d.ts",
+      "esm2020": "./esm2020/ngx-custom-validators.mjs",
+      "es2020": "./fesm2020/ngx-custom-validators.mjs",
+      "es2015": "./fesm2015/ngx-custom-validators.mjs",
+      "node": "./fesm2015/ngx-custom-validators.mjs",
+      "default": "./fesm2020/ngx-custom-validators.mjs"
+    }
+  },
+  "sideEffects": false
 }

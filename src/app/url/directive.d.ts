@@ -1,0 +1,9 @@
+import { Validator, AbstractControl } from '@angular/forms';
+import * as i0 from "@angular/core";
+export declare class UrlValidator implements Validator {
+    validate(c: AbstractControl): {
+        [key: string]: any;
+    };
+    static ɵfac: i0.ɵɵFactoryDeclaration<UrlValidator, never>;
+    static ɵdir: i0.ɵɵDirectiveDeclaration<UrlValidator, "[url][formControlName],[url][formControl],[url][ngModel]", never, {}, {}, never>;
+}
